@@ -29,25 +29,24 @@ def airbnb_load():
         client.admin.command('ping')
         print("Connected to MongoDB successfully!")
         db = client['sample_airbnb']
-        collection = db['listingAndReviews'].find()
-        return client, collection
+        return client, db
     except Exception as e:
         print(f"An error occurred while connecting to MongoDB: {e}")
         return None, None
 
 def upload_document(document, function: str, filter_criteria=None, update_fields=None):
-    client, collection = airbnb_load()
+    client, db = airbnb_load()
     
-    if collection is not None:
+    if db is not None:
         if function == 'Insert':
             if isinstance(document, list):
-                collection.insert_many(document)
+                db.insert_many(document)
             else:
-                collection.insert_one(document)
+                db.insert_one(document)
         
         elif function == 'Update':
             if filter_criteria and update_fields:
-                result = collection.update_one(filter_criteria, {'$set': update_fields})
+                result = db.update_one(filter_criteria, {'$set': update_fields})
                 if result.modified_count > 0:
                     print("Document updated successfully!")
                 else:
@@ -55,7 +54,7 @@ def upload_document(document, function: str, filter_criteria=None, update_fields
             else:
                 print("Filter criteria and update fields are required for update operation.")
     else:
-        print("Failed to load the collection.")
+        print("Failed to load the database.")
     
     if client:
         client.close()
