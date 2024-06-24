@@ -4,7 +4,14 @@ module.exports = {
     "./index.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        maroon: {
+          700: '#800000', // Dark maroon color
+          800: '#660000', // Darker maroon color for hover state
+        },
+      },
+    },
   },
   plugins: [],
 }
