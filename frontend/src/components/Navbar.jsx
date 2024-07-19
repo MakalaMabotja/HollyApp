@@ -13,13 +13,13 @@ export default function Navbar() {
       <div className="flex space-x-4 font-semibold">
         <button
           onClick={() => navigate("/search")}
-          className="rounded-md border-2 text-black/85 border-slate-50 flex justify-center items-center hover:bg-gray-50 p-2 hover:scale-110 hover:text-black ease-in duration-100"
+          className="rounded-md border-2 text-black/75 border-slate-50 flex justify-center items-center hover:bg-gray-50 p-2 hover:scale-110 hover:text-black ease-in duration-100"
         >
           Search
         </button>
         <button
           onClick={() => navigate("/results")}
-          className="rounded-md border-2 text-black/85 border-slate-50 flex justify-center items-center hover:bg-gray-50 p-2 hover:scale-110 hover:text-black ease-in duration-100"
+          className="rounded-md border-2 text-black/75 border-slate-50 flex justify-center items-center hover:bg-gray-50 p-2 hover:scale-110 hover:text-black ease-in duration-100"
         >
           Results
         </button>
