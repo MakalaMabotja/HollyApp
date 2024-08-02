@@ -1,3 +1,11 @@
+# Design documentation
+/openai
+*.ipynb
+*.docx
+*.pptx
+*.pdf
+frontend/testListing.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
