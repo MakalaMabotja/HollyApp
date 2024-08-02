@@ -1,5 +1,8 @@
 /openai
 .env
 *.ipynb
+*.docx
+*.pptx
+*.pdf
 
 frontend/testListing.json
