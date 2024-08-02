@@ -7,12 +7,12 @@ const Card = ({ title, children, expandableContent, price}) => {
 
   return (
     <div className="w-full flex flex-col  border border-gray-200 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-2 border border-gray-100 text-center">{title}</h2>
-      <div className="flex justify-between items-center mb-4 p-4">
+          <h2 className="text-xl font-semibold p-1 border border-gray-100 text-center">{title}</h2>
+      <div className="flex justify-between items-center px-4 py-2">
         <div className="w-2/3">
           {children}
         </div>
-        <div className="w-1/5 aspect-square bg-blue-500 text-white flex items-center justify-center rounded-full ml-4">
+        <div className="w-1/5 aspect-square bg-white shadow shadow-slate-200 text-gray-600 flex items-center justify-center rounded-full ml-4">
           <span className="text-lg font-semibold">{price}</span>
         </div>
       </div>
