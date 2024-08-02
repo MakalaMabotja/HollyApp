@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className='hidden lg:flex lg:flex-row lg:flex-wrap items-center h-screen'>
+      <div className='hidden md:flex md:flex-row md:flex-wrap items-center h-screen'>
         <LeftPanel/>
         <CenterPanel>
           <HollyBox name={name} />
@@ -30,7 +30,7 @@ const Home = () => {
       </div>
 
       {/* Home page view for mobile */}
-      <div className='flex flex-col items-center space-y-4 lg:hidden'>
+      <div className='flex flex-col items-center space-y-4 md:hidden'>
         <CenterPanel>
           <HollyBox name={name} />
           <UserDetailsForm onNameChange={handleNameChange} />

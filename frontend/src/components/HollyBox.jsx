@@ -15,7 +15,7 @@ const HollyBox = ({ name }) => {
             </p>
             <p className='typewriter'>
             <span className=' font-light sm:text-xs md:text-xl lg:text-2xl mb-2'>
-              {name ? "Let's get your ideal holiday setup. Tell me what you would like to do on your next holiday. " : "I'm your AI holiday "}<span className={`italic ${name ? 'hidden' : ''}`}>Copilot.</span>
+              {name ? "Let's get your ideal holiday setup. Tell me what you would like to do on your next holiday. " : "I'm your AI holiday "}<span className={`italic ${name ? 'hidden' : ''}`}>Copilot. </span>
             </span>
             <span className='font-light sm:text-xs md:text-xl lg:text-2xl'>
               {name ? "After that you can describe to me your favorite holiday experiences." : "For me to help you plan your next destination, I need to know you a bit better. Can you tell me who you are…"}

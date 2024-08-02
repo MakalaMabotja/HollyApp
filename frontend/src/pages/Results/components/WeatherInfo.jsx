@@ -1,11 +1,17 @@
 import React from 'react';
+import Card from '../../../components/ResultsCard';
 
-const WeatherInfo = () => {
+const WeatherInfo = ({ data }) => {
   return (
-    <div>
-      <h2>Weather Info</h2>
-      <p>Details about the weather.</p>
-    </div>
+    <Card
+      title="Weather Info"
+      expandableContent={
+        <div>
+        </div>
+      }
+    >
+      <p>Selected Dates: {data.selectedDates}</p>
+    </Card>
   );
 };
 

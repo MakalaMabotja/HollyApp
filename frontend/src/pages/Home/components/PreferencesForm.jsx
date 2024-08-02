@@ -33,6 +33,7 @@ const PreferencesForm = () => {
             <div className='flex flex-col justify-center md:flex-1 md:w-full'>
             <label key={index} className="inline-flex items-center">
             <input
+                id={preference}
                 type="checkbox"
                 className="form-checkbox"
                 value={preference}

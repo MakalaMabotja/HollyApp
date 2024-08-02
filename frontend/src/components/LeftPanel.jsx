@@ -1,9 +1,8 @@
-// LeftPanel.jsx
 import React from 'react';
 
-const LeftPanel = ({ children }) => {
+const LeftPanel = ({ children, isResultsPage }) => {
   return (
-    <div className="w-full md:w-1/5 h-auto p-4 overflow-y-auto  justify-center items-center">
+    <div className={`w-full ${isResultsPage ? 'md:w-1/4' : 'md:w-1/5'} h-auto p-2 overflow-y-auto justify-center items-center`}>
       {children}
     </div>
   );
