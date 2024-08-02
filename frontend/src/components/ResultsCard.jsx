@@ -6,7 +6,7 @@ const Card = ({ title, children, expandableContent, price}) => {
   const toggleExpand = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className="w-full min-h-20 flex flex-col  border border-gray-200 rounded-lg shadow-md">
+    <div className="w-full flex flex-col  border border-gray-200 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-2 border border-gray-100 text-center">{title}</h2>
       <div className="flex justify-between items-center mb-4 p-4">
         <div className="w-2/3">
