@@ -1,14 +1,3 @@
-#From this module we need the db connection, loading of the airbnb data, parsing of core data and handling queries
-#We first need to connect to the database, then retrieve the entries of the airbnb collection.
-#Required Functions:
-# 1. database connection (Done)
-# 2. retrieval of airbnb listing and reviews (Done)
-# 3. if embeddings doesn't exist then we need to create the embeddings
-#    We want to embed the description given by the host for the user to query against
-#    Additional emdebbings could include reviews but for the simple version we just need the 
-
-
-
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
@@ -44,61 +33,37 @@ class EmbeddingVectors(BaseModel):
     embeddings: List[float]
 
     @staticmethod
-    def search_embeddings(collection_name: str, query:List[str]):
+    def search_embeddings(collection_name: str, query: List[float], top_k: int = 5):
         """
-        This method is to search the listingAndReviews collection based on the index of the embedded values
+        Searches for the top K listings based on the embedding vectors.
 
         Args:
-            collection_name (str): _description_
-            query (List[str]): _description_
+            collection_name (str): The name of the collection to search in.
+            query (List[float]): The embedding vector to search for.
+            top_k (int): The number of top matches to return.
 
         Returns:
-            _type_: _description_
+            List[dict]: A list of the top K listings that match the search query.
         """
         results = []
         try:
             client, db = airbnb_load()
             if db:
                 collection = db[collection_name]
-                for q in query:
-                    if collection:
-                        result = collection.find_one({"_id":"q"})
-                        results.append(result)
-                    else:
-                        print(f"Collection '{collection_name}' not found in the database.")
-                        return []
+                if collection:
+                    results = list(collection.find(
+                        {"embeddings": {"$near": query}}
+                    ).limit(top_k))
+                else:
+                    print(f"Collection '{collection_name}' not found in the database.")
             else:
                 print("Failed to load the database.")
-                return []
         except Exception as e:
             print(e)
-            return []
-        
-#Pydantic class for handling the Listing data
-class Listing(BaseModel):
-    _id: str
-    description: str
-    image_url: str
-    dimensions: dict
-    location: str
-    price: int
-    total:int
-    
-    def total_cost(self, dates: tuple) -> int:
-        """
-        Calculates the total cost based on the number of nights and price per night.
-
-        Args:
-            dates (tuple): Tuple of start and end dates (datetime objects).
-            price (int): Price per night.
-
-        Returns:
-            int: Total cost for the stay.
-        """
-        start_date, end_date = dates
-        total_nights = (end_date - start_date).days - 1  # Calculate total nights
-
-        self.total =  self.price * total_nights
+        finally:
+            if client:
+                client.close()
+        return results
 
 def upload_document(document, collection_name: str, function: str, filter_criteria=None, update_fields=None):
     client, db = airbnb_load()
